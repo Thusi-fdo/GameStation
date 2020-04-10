@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+
+</style>
+    <h1>Products</h1>
+    <div class="row">
+       <!-- <form action="/cart/add" method="POST">  -->
+        {% for product in products %}  <!-- for loop -->
+            <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                    <a href="{{ product.get_add_to_cart_url }}" class="btn btn-primary" >Add to Cart</a>
+                    <a href="{{ product.slug }}" class="btn btn-primary ml-2 float-right" >View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      <!--  </form> -->
+    </div>
+
+{% endblock %}

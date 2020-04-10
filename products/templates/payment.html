@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+
+
+{% block extra_head %}
+<style media="screen">
+#stripeBtnLabel {
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, sans-serif;
+  font-size: 16px;
+  font-variant: normal;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stripeBtn {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  background: #32325d;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  float: left;
+  margin-left: 12px;
+  margin-top: 23px;
+}
+
+#stripeBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+  background-color: #43458b;
+}
+
+#stripe-form {
+  padding: 30px;
+  height: 120px;
+}
+
+label {
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+#card-errors {
+  height: 20px;
+  padding: 4px 0;
+  color: #fa755a;
+}
+
+.stripe-form-row {
+  width: 70%;
+  float: left;
+}
+
+
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+</style>
+{% endblock extra_head %}
+{% block content %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+
+<div class="pb-2 text-center">
+    <h2>Payment Validation</h2>
+</div>
+<div class="row">
+<div class="col-lg-4 mt-2">
+{% include 'orderSnippet.html' %}
+
+    <div class="col-md-8  bg-light">
+
+
+        <script src="https://js.stripe.com/v3/"></script>
+
+      <form action="." method="post" id="stripe-form">
+          {% csrf_token %}
+        <div class="stripe-form-row">
+            <label for="card-element" id="stripeBtnLabel">
+                Credit or debit card
+            </label>
+            <div id="card-element" class="StripeElement StripeElement--empty">
+                <div class="__PrivateStripeElement"
+                     style="margin: 0px !important;
+                            padding:0px !important;
+                            border: none !important;
+                            display: block !important;
+                            background: transparent !important;
+                            position: relative !important;
+                            opacity: 1 !important;">
+
+                    <input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false"
+                           maxlength="1"
+                           style="  border: none !important;
+                                    display: block !important;
+                                    position: absolute !important;
+                                    height: 1px !important;
+                                    top: 0px !important;
+                                    left: 0px !important;
+                                    padding: 0px !important;
+                                    margin: 0px !important;
+                                    width: 100% !important;
+                                    opacity: 0 !important; background: transparent !important;
+                                    pointer-events: none !important;
+                                    font-size: 16px !important;">
+                </div>
+            </div>
+
+            <!-- Used to display form errors. -->
+            <div id="card-errors" role="alert"></div>
+        </div>
+
+        <button id="stripeBtn">Submit Payment</button>
+    </form>
+
+    </div>
+</div>
+</div>
+
+<!----------------javascript------------->
+
+
+
+<script type="text/javascript" nonce="">
+// Create a Stripe client.
+  var stripe = Stripe('pk_test_DoeNbMmowJ7eLG3fh0Ls2qA300cu6wnj3P');
+
+  // Create an instance of Elements.
+  var elements = stripe.elements();
+
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  var style = {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  // Handle form submission.
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+
+  // Submit the form with the token ID.
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+  }
+
+  var successElement = document.getElementById('stripe-token-handler');
+  document.querySelector('.wrapper').addEventListener('click', function() {
+    successElement.className = 'is-hidden';
+  });
+
+  // Not in demo.
+  function stripeTokenHandler(token) {
+    successElement.className = '';
+    successElement.querySelector('.token').textContent = token.id;
+  }
+</script>
+
+
+{% endblock content %}

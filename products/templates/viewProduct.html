@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<!DOCTYPE html>
+<html lang='en' class=''>
+<head>
+
+
+    <title>Game Station</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'>
+
+    </script>
+    <script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
+    <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico"/>
+    <link rel="mask-icon" type=""
+          href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+          color="#111"/>
+    <link rel="canonical"
+          href="https://codepen.io/fdanisko/pen/VadXXq?depth=everything&order=popularity&page=9&q=product&show_forks=false"/>
+
+    <link rel='stylesheet prefetch'
+          href='https://raw.githubusercontent.com/greenwoodents/quickbeam.js/master/demo/css/demo.css'>
+    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+    <style class="cp-pen-styles">
+
+
+{% static 'css/product_view.css' %}
+
+    </style>
+</head>
+<body>
+
+<!-- Demo page craeted by https://github.com/petr-goca -->
+<header role="banner" aria-label="Heading">
+
+</header>
+
+<section aria-label="Main content" role="main" class="product-detail">
+    <div itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="url" content="http://html-koder-test.myshopify.com/products/tommy-hilfiger-t-shirt-new-york">
+        <meta itemprop="image" content="//cdn.shopify.com/s/files/1/1047/6452/products/product_grande.png?v=1446769025">
+        <div class="shadow">
+            <div class="_cont detail-top">
+                <div class="cols">
+                    <div class="left-col">
+                        <div class="thumbs">
+
+                            <a class="thumb-image active" data-index="0">
+                                <span><img
+                                        src="https://images-na.ssl-images-amazon.com/images/I/71GfxNOrO7L._AC_SL1500_150x150.jpg"></span>
+                            </a>
+
+                            <a class="thumb-image" data-index="1">
+                                <span><img
+                                        src="https://preview.redd.it/23trf11js9311.jpg?width=640&crop=smart&auto=webp&s=59eac277b5e4de08cb3cf5e1dc2419d5a9952322"></span>
+                            </a>
+                            <a class="thumb-image" data-index="2">
+                                <span><img src="https://i.ytimg.com/vi/nNLaOm1a2Sg/maxresdefault.jpg"></span>
+                            </a>
+                        </div>
+                        <div class="big">
+                            <span id="big-image" class="img" quickbeam="image"
+                                  style="background-image: url('{{ object.image_url }}')"></span>
+                            <div id="banner-gallery" class="swipe">
+                                <div class="swipe-wrap">
+                                    <div style="background-image: url('//cdn.shopify.com/s/files/1/1047/6452/products/product_large.png?v=1446769025')"></div>
+                                    <div style="background-image: url('//cdn.shopify.com/s/files/1/1047/6452/products/tricko1_large.jpg?v=1447104179')"></div>
+                                    <div style="background-image: url('//cdn.shopify.com/s/files/1/1047/6452/products/tricko2_large.jpg?v=1447104180')"></div>
+                                    <div style="background-image: url('//cdn.shopify.com/s/files/1/1047/6452/products/tricko3_large.jpg?v=1447104182')"></div>
+                                </div>
+                            </div>
+                            <div class="detail-socials">
+                                <div class="social-sharing"
+                                     data-permalink="http://html-koder-test.myshopify.com/products/tommy-hilfiger-t-shirt-new-york">
+                                    <a target="_blank" class="share-facebook" title="Share"></a>
+                                    <a target="_blank" class="share-twitter" title="Tweet"></a>
+                                    <a target="_blank" class="share-pinterest" title="Pin it"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-col">
+                        <h1 itemprop="name">{{ object.name }}</h1>
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <meta itemprop="priceCurrency" content="USD">
+                            <link itemprop="availability" href="https://schema.org/InStock">
+                            <div class="price-shipping">
+                                <div class="price" id="price-preview" quickbeam="price" quickbeam-price="800">
+                                    ${{ object.price }}
+                                </div>
+                                <a>Free shipping</a>
+                            </div>
+                            <!-- <form method="post" enctype="multipart/form-data" id="AddToCartForm"> -->
+                            <form id="AddToCartForm">
+                                <select name="id" id="productSelect" quickbeam="product"
+                                        class="product-single__variants">
+                                    <option selected="selected" data-sku="" value="7924994501">
+                                        M / Blue - $800.00 USD
+                                    </option>
+                                    <option data-sku="" value="7924995077">
+
+                                    </option>
+                                </select>
+                                <a href="{{ object.get_add_to_cart_url }}" class="btn-and-quantity-wrap">
+                                    <div class="btn-and-quantity">
+                                        <div class="spinner">
+                                            <span class="btn minus" data-id="2721888517"></span>
+                                            <input type="text" id="updates_2721888517" name="quantity" value="1"
+                                                   class="quantity-selector">
+                                            <input type="hidden" id="product_id" name="product_id" value="2721888517">
+                                            <span class="q">Qty.</span>
+                                            <span class="btn plus" data-id="2721888517"></span>
+                                        </div>
+                                        <div id="AddToCart" quickbeam="add-to-cart">
+                                            <span id="AddToCartText">Add to Cart</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+                            <div class="tabs">
+                                <div class="tab-labels">
+                                    <span data-id="1" class="active">Info</span>
+                                </div>
+                                <div class="tab-slides">
+                                    <div id="tab-slide-1" itemprop="description" class="slide active">
+                                        {{ object.description }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="social-sharing-btn-wrapper">
+                                <span id="social_sharing_btn">Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Quickbeam cart-->
+
+<div id="quick-cart" quickbeam="cart">
+    <a id="quick-cart-pay" quickbeam="cart-pay" class="cart-ico">
+    <span>
+      <strong class="quick-cart-text">Pay<br></strong>
+      <span id="quick-cart-price">0</span>
+      <span id="quick-cart-pay-total-count">0</span>
+    </span>
+    </a>
+</div>
+
+<!-- Quickbeam cart end -->
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script src='//raw.githubusercontent.com/greenwoodents/quickbeam.js/master/dist/quickbeam.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js'></script>
+<script>//Hey you! Thanks for checking this pen. :) I open source it as library. https://github.com/greenwoodents/quickbeam.js
+
+
+
+</script>
+</body>
+</html>
+
+{% endblock %}
